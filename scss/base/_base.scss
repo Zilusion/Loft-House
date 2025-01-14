@@ -1,0 +1,50 @@
+@use './variables' as variables;
+@use './mixins' as mixins;
+
+body {
+    font-family: variables.$font-primary;
+    background-color: variables.$background-color;
+    color: variables.$secondary-color;
+    font-size: 16px;
+}
+
+a {
+    color: variables.$secondary-color;
+    transition: color 0.2s ease-in;
+
+    &:hover {
+        color: variables.$primary-color;
+    }
+}
+
+.container {
+    max-width: 1140px;
+    padding: 0 15px;
+    margin: 0 auto;
+
+    &--sm {
+        max-width: 840px;
+    }
+}
+
+.section-title {
+    color: variables.$primary-color;
+    font: 700 36px 'Playfair Display SC';
+
+    @include mixins.media-md {
+        font-size: 30px;
+    }
+}
+
+.link-bold {
+    color: variables.$primary-color;
+    font-weight: 700;
+}
+
+.none {
+    display: none !important;
+}
+
+.no-scroll {
+    overflow-y: hidden;
+}

@@ -1,0 +1,80 @@
+@use '../base/variables' as variables;
+
+@mixin icon-with-position($icon, $width, $height, 
+$horizontalPosition:left, $horizontalPositionValue:0, 
+$verticalPosition:top, $verticalPositionValue:0, 
+$translate:0) {
+    position: relative;
+
+    &::before {
+        content: '';
+        background: $icon center/contain no-repeat;
+        width: $width;
+        height: $height;
+        position: absolute;
+        #{$horizontalPosition}: $horizontalPositionValue;
+        #{$verticalPosition}: $verticalPositionValue;
+        translate: $translate;
+    }
+}
+
+//Верхний mixin оказался слишком перегруженным, разделим его на 2 более специализированных.
+@mixin icon($background, $width, $height) {
+    &::before {
+        content: '';
+        width: $width;
+        height: $height;
+        position: absolute;
+        background: $background center/contain no-repeat;
+    }
+}
+
+@mixin position($horizontalPosition: left, $horizontalPositionValue: 0, $verticalPosition: top, $verticalPositionValue: 0, $translate: 0) {
+    position: relative;
+
+    &::before {
+        #{$horizontalPosition}: $horizontalPositionValue;
+        #{$verticalPosition}: $verticalPositionValue;
+        translate: $translate;
+    }
+}
+
+@mixin background-number($content, $position, $line-height) {
+    position: relative;
+    &::#{$position} {
+        content: $content;
+        position: absolute;
+        z-index: -1;
+        top: 0;
+        font: 700 400px/#{$line-height} variables.$font-accent;
+        color: rgba(variables.$secondary-color, 0.02);
+        @if($position == 'before') {
+            right: calc(50% + 555px);
+            translate: 50%;
+        } @else if($position == 'after') {
+            left: calc(50% + 555px);
+            translate: -50%;
+        }
+    }
+}
+
+@mixin media-lg {
+    @media screen and (max-width: variables.$lg) { 
+        @content;
+    }
+}
+@mixin media-md {
+    @media screen and (max-width: variables.$md) { 
+        @content;
+    }
+}
+@mixin media-sm {
+    @media screen and (max-width: variables.$sm) { 
+        @content;
+    }
+}
+@mixin media-xs {
+    @media screen and (max-width: variables.$xs) { 
+        @content;
+    }
+}

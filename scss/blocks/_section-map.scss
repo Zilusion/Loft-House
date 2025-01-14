@@ -1,0 +1,27 @@
+@use '../base/variables' as variables;
+@use '../base/mixins' as mixins;
+
+.section-map {
+    overflow: hidden;
+    padding: 180px 0;
+    @include mixins.background-number('V', 'before', 2);
+
+    @include mixins.media-lg {
+        padding: 90px 0;
+    }
+
+    &__title {
+        margin-bottom: 88px;
+
+        @include mixins.media-lg {
+            margin-bottom: 44px;
+        }
+    }
+}
+
+
+.map {
+    height: 358px;
+    background: #626262;
+}
+

@@ -1,0 +1,199 @@
+@use '../base/variables' as variables;
+@use '../base/mixins' as mixins;
+
+.header {
+    background: 
+        linear-gradient(180deg, variables.$background-color 0%, variables.$background-color 12%, rgba(variables.$background-color, 0.38) 51%, variables.$background-color 92%, variables.$background-color 100%), 
+        url('./../images/blocks/header/bg.jpg') center/cover no-repeat;
+    padding: 30px 0 74px;
+
+    &__container {
+        display: flex;
+        flex-direction: column;
+        row-gap: 200px;
+
+        @include mixins.media-lg {
+            row-gap: 110px;
+        }
+
+        @include mixins.media-sm {
+            row-gap: 80px;
+        }
+    }
+
+    &__top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: relative;
+
+        &::before {
+            position: absolute;
+            content: '';
+            width: 100vw;
+            height: 100vh;
+            background-color: variables.$background-color;
+            left: 0;
+            top: 0;
+            translate: -50% -110vh;
+            display: block;
+            transition: translate 0.85s;
+        }
+    }
+
+    &__nav-list {
+        display: flex;
+        column-gap: 40px;
+    }
+
+    &__nav {
+        font-size: 14px;
+        letter-spacing: 0.05em;
+
+        @include mixins.media-lg {
+            display: none;
+        }
+    }   
+
+    &__nav-button {
+        display: none;
+
+        @include mixins.media-lg {
+            display: grid;
+        }
+    }
+    
+    &__center {
+        display: flex;
+        justify-content: center;
+    }
+    
+
+    &__title {
+        font: bold 48px variables.$font-accent;
+        color: variables.$primary-color;
+        max-width: 620px;
+        text-align: center;
+        padding-bottom: 121px;
+    
+        @include mixins.icon-with-position(url('./../images/blocks/header/mouse.svg'), 40px, 40px, left, 50%, bottom, 0, -50%);
+    
+        @include mixins.media-lg {
+            font-size: 32px;
+            padding-bottom: 100px;
+        }
+
+        @include mixins.media-sm {
+            font-size: 24px;
+            padding-bottom: 70px;
+        }
+    }
+
+    &__contacts {
+        display: flex;
+        justify-content: center;
+        column-gap: 100px;
+        font-size: 18px;
+
+        @include mixins.media-lg {
+            column-gap: 50px;
+        }
+
+        @include mixins.media-md {
+            column-gap: 20px;
+        }
+
+        @include mixins.media-sm {
+            flex-direction: column;
+            align-items: center;
+            row-gap: 20px;
+        }
+    }
+
+    &__address,
+    &__phone {
+        padding-left: 35px;
+
+        @include mixins.media-md {
+            padding-left: 28px;
+        }
+    }
+    
+    &__address {
+        @include mixins.icon-with-position(url('./../images/blocks/header/placeholder.svg'), 21px, 21px, left, 0, top, 0, 0);
+    }
+
+    &__phone {
+        @include mixins.icon-with-position(url('./../images/blocks/header/phone-call.svg'), 21px, 21px, left, 0, top, 0, 0);
+    }
+
+    &__top--mobile {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        flex-direction: column;
+        row-gap: 60px;
+        justify-content: start;
+        z-index: 99;
+        padding-top: 30px;
+
+        & + .header__center {
+            padding-top: 146px;
+        }
+
+        &::before {
+            animation: move 0.85s both;
+            display: block;
+        }
+
+        .header__logo,
+        .header__nav {
+            animation: move 0.85s;
+            z-index: 99;
+        }
+
+        .header__nav {
+            display: block;
+            z-index: 99;
+        }
+
+        .header__nav-list {
+            flex-direction: column;
+            row-gap: 30px;
+            align-items: center;
+        }
+
+        .header__nav-button {
+            position: fixed;
+            right: 15px;
+            top: 35px;
+        }
+    }
+
+    &__top--closing {
+        .header__logo,
+        .header__nav {
+            animation: move-reverse 0.85s forwards;
+        }
+    }
+}
+
+@keyframes move {
+    0% {
+        translate: 0% -100vh;
+    }
+    100% {
+        translate: 0% 0%;
+    }
+}
+
+@keyframes move-reverse {
+    0% {
+        translate: 0% 0%;
+    }
+    100% {
+        translate: 0% -100vh;
+    }
+}

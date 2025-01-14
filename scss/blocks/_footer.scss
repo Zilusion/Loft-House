@@ -1,0 +1,58 @@
+@use '../base/variables' as variables;
+@use '../base/mixins' as mixins;
+
+.footer {
+    background-color: variables.$footer-bg-color;
+    padding: 72px 0 60px;
+    font-size: 14px;
+    letter-spacing: 0.05em;
+
+    @include mixins.media-lg {
+        padding: 36px 0 30px;
+    }
+    
+    &__container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 30px;
+
+        @include mixins.media-lg {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px 30px;
+        }
+
+        @include mixins.media-md {
+            justify-items: center;
+            grid-template-columns: 1fr;
+            gap: 40px 30px;
+        }
+    }
+    
+    &__logo {
+        margin-top: -12px;
+    }
+
+    &__list {
+        display: grid;
+        gap: 15px;
+    }
+
+    &__contacts {
+        display: grid;
+        gap: 20px;
+    }
+
+    &__socials {
+        display: flex;
+        column-gap: 22px;
+    }
+
+    &__logo,
+    &__nav,
+    &__contacts,
+    &__socials {
+        @include mixins.media-md {
+            min-width: 290px;
+        }
+    }
+}

@@ -1,0 +1,45 @@
+@use '../base/variables' as variables;
+@use '../base/mixins' as mixins;
+
+.form {
+    display: grid;
+
+    &__input {
+        height: 50px;
+        padding: 12px;
+        text-align: center;
+        background-color: rgba(variables.$secondary-color, 0.2);
+        font-size: 14px;
+        line-height: 1.9;
+        transition: background-color 0.2s ease-in;
+
+        &::placeholder {
+            color: variables.$placeholder;
+        }
+
+        &:focus {
+            background-color: rgba(variables.$secondary-color, 0.3);
+
+        }
+    }
+
+    &__privacy {
+        font-size: 13px;
+        line-height: 1.23;
+        text-align: center;
+        color: variables.$privacy;
+        align-self: center;
+    }
+
+    &__submit {
+        height: 50px;
+        font-weight: 700;
+        padding: 12px;
+        text-align: center;
+        background-color: variables.$primary-color;
+        
+        &:hover {
+            background-color: saturate(variables.$primary-color, 10%);
+        }
+    }
+}

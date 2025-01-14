@@ -1,0 +1,47 @@
+@use '../base/variables' as variables;
+@use '../base/mixins' as mixins;
+
+.video {
+    overflow: hidden;
+    text-align: center;
+    @include mixins.background-number('IV', 'after', 1.67);
+
+    &__link {
+        position: relative;
+        display: inline-block;
+    
+        &::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(variables.$background-color, 0.8);
+            transition: background-color 0.2s ease-in;
+        }
+    
+        &:hover::before {
+            background: rgba(variables.$background-color, 0.7);
+        }
+    
+        &:hover .video__icon {
+            scale: 1.2;
+        }
+    }
+
+    &__icon {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        translate: -50% -50%;
+        transition: scale 0.2s ease-in;
+
+        @include mixins.media-sm {
+            width: 80px;
+        }
+    }
+}
+
+
+

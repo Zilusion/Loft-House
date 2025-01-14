@@ -1,0 +1,62 @@
+@use '../base/variables' as variables;
+@use '../base/mixins' as mixins;
+
+.cta {
+    background: 
+        linear-gradient(180deg, rgba(variables.$background-color,1) 0%, rgba(variables.$background-color,1) 10%, rgba(variables.$background-color,0) 51%, rgba(variables.$background-color,1) 90%, rgba(variables.$background-color,1) 100%), 
+        linear-gradient(0deg, rgba(variables.$background-color,0.9) 0%, rgba(variables.$background-color,0.9) 100%),
+        url('./../images/blocks/offer/bg.jpg') center/cover no-repeat;
+    padding: 180px 0;
+
+    @include mixins.media-lg {
+        padding: 60px 0;
+    }
+
+    &__title {
+        color: variables.$primary-color;
+        font: bold 36px 'Playfair Display SC';
+        margin-bottom: 17px;
+
+        @include mixins.media-md {
+            font-size: 30px;
+        }
+    }
+
+    &__content {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+
+        @include mixins.media-lg {
+            grid-template-columns: 1fr
+        }
+    }
+
+    &__text {
+        line-height: 1.5;
+
+        p + p {
+            margin-top: 1rem;
+        }
+
+        @include mixins.media-sm {
+            font-size: 14px;
+        }
+    }
+
+    &__form {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 35px 30px;
+
+        @include mixins.media-sm {
+            grid-template-columns: 1fr;
+            row-gap: 25px;
+        }
+    }
+
+    &__privacy {
+        @include mixins.media-sm {
+            grid-row: 4/5;
+        }
+    }
+}

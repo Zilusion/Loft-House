@@ -1,0 +1,40 @@
+@use '../base/variables' as variables;
+@use '../base/mixins' as mixins;
+
+.feedback {
+    background: variables.$background-color;
+    padding-bottom: 180px;
+
+    &__title {
+        color: variables.$primary-color;
+        font: bold 36px 'Playfair Display SC';
+        margin-bottom: 38px;
+
+        @include mixins.media-lg {
+            margin-bottom: 19px;
+        }
+    }
+
+    &__form {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 30px;
+
+        @include mixins.media-lg {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @include mixins.media-md {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    &__privacy {
+        @include mixins.media-lg {
+            grid-row: 2/3;
+        }
+
+        @include mixins.media-md {
+            grid-row: 4/5;
+        }
+    }
+}
